@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 
 const randIndex = Math.floor(Math.random() * DUMMY_USERS.length);
@@ -11,16 +11,21 @@ const randIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 })
 export class UserComponent {
   // Just like JS arrays
-  pickedUser = DUMMY_USERS[randIndex];
+  pickedUser = signal(DUMMY_USERS[randIndex]);
+  // New approch
 
   // Like a property and not to be called explicitly
-  get imagePath(){
-    // This keyword as inside the class so.
-    return 'assets/images/users/' + this.pickedUser.avatar;
-  }
+  // get imagePath(){
+  //   // This keyword as inside the class so.
+  //   // return 'assets/images/users/' + this.pickedUser.avatar;
+  // }
 
-  onSelectUser(){
+  // While using the signals and use the subscription way internally
+  imagePath = computed(() => 'assets/images/users/' + this.pickedUser().avatar);
+
+  onSelectUser() {
     const randIndex = Math.floor(Math.random() * DUMMY_USERS.length);
-    this.pickedUser = DUMMY_USERS[randIndex];
+    // this.pickedUser = DUMMY_USERS[randIndex];
+    this.pickedUser.set(DUMMY_USERS[randIndex]);
   }
 }
