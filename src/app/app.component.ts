@@ -14,4 +14,8 @@ export class AppComponent {
   title = 'my-first-app';
 
   users = DUMMY_USERS;
+
+  onSelectUser(id: string){
+    console.log("This is an id : ", id);
+  }
 }
