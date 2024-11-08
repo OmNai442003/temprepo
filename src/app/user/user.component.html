@@ -1,11 +1,11 @@
 <div>
-    <button (click)="onSelectUser()">
+    <button>
         <!-- Now go but not good practice -->
         <!-- <img [src]="'assets/images/users/' + pickedUser.avatar" [alt]="pickedUser.name" /> -->
          <!-- No parenthesies as it is like a property -->
-        <img [src]="imagePath()" [alt]="pickedUser().name" />
+        <img [src]="imagePath"/>
         <!-- <span>{{pickedUser.name}}</span> -->
          <!-- With signal - signal read will be done -->
-        <span>{{pickedUser().name}}</span>
+        <span>{{name}}</span>
     </button>
 </div>
