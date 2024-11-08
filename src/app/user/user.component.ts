@@ -48,7 +48,7 @@ export class UserComponent {
   // imagePath = computed(()=>{
   //   return 'assets/images/users/' + this.avatar();
   // })
-  @Output() select = new EventEmitter();
+  @Output() select = new EventEmitter<string>();
   onSelectUser(){
     console.log("Onselect called");
     this.select.emit(this.id);
