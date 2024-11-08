@@ -32,16 +32,25 @@ export class UserComponent {
 
   // Now the new thing above was just for the look up
   // We mandate that we will surly pass this configurations and if they are not passed then error will be thrown
-  @Input({required:true}) avatar!: string;
-  @Input({required:true}) name!: string;
-  @Input({required:true}) id!:string;
+  // @Input({required:true}) avatar!: string;
+  // @Input({required:true}) name!: string;
+  // @Input({required:true}) id!:string;
+
+  @Input({required: true}) user!: {
+    id: string;
+    avatar: string;
+    name: string;
+  };
+
+
+
   // By use of signal
   // Now from outside we send by means of signal or not
   // avatar = input.required<string>();
   // name = input.required<string>();
 
   get imagePath(){
-    return 'assets/images/users/' + this.avatar;
+    return 'assets/images/users/' + this.user.avatar;
   }
 
   // For the purpose of signal
@@ -51,6 +60,6 @@ export class UserComponent {
   @Output() select = new EventEmitter<string>();
   onSelectUser(){
     console.log("Onselect called");
-    this.select.emit(this.id);
+    this.select.emit(this.user.id);
   }
 }
