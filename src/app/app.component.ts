@@ -16,7 +16,7 @@ export class AppComponent {
 
   users = DUMMY_USERS;
 
-  selectedUserId = 'u1';
+  selectedUserId?: string;
   onSelectUser(id: string){
     console.log("This is an id : ", id);
     this.selectedUserId = id;
