@@ -1,14 +1,20 @@
 // import { Component, computed, signal } from '@angular/core';
-import { Component, computed, EventEmitter, input, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 // import { DUMMY_USERS } from '../dummy-users';
 
 // const randIndex = Math.floor(Math.random() * DUMMY_USERS.length);
+
+interface User {
+  id: string;
+  avatar: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-user',
   standalone: true,
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+  styleUrl: './user.component.css',
 })
 export class UserComponent {
   // // Just like JS arrays
@@ -36,20 +42,14 @@ export class UserComponent {
   // @Input({required:true}) name!: string;
   // @Input({required:true}) id!:string;
 
-  @Input({required: true}) user!: {
-    id: string;
-    avatar: string;
-    name: string;
-  };
-
-
+  @Input({ required: true }) user!: User;
 
   // By use of signal
   // Now from outside we send by means of signal or not
   // avatar = input.required<string>();
   // name = input.required<string>();
 
-  get imagePath(){
+  get imagePath() {
     return 'assets/images/users/' + this.user.avatar;
   }
 
@@ -58,8 +58,8 @@ export class UserComponent {
   //   return 'assets/images/users/' + this.avatar();
   // })
   @Output() select = new EventEmitter<string>();
-  onSelectUser(){
-    console.log("Onselect called");
+  onSelectUser() {
+    console.log('Onselect called');
     this.select.emit(this.user.id);
   }
 }
